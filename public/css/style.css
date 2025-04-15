@@ -1,0 +1,63 @@
+/* public/css/styles.css */
+.success-message {
+    background-color: #d4edda; /* Couleur de fond */
+    color: #155724; /* Couleur du texte */
+    border: 1px solid #c3e6cb; /* Bordure */
+    padding: 10px; /* Espacement interne */
+    margin-top: 20px; /* Espacement par rapport aux autres éléments */
+    border-radius: 5px; /* Coins arrondis */
+    font-family: Arial, sans-serif; /* Police */
+    font-size: 1.2em; /* Taille de police */
+    display: flex; /* Utilisation du flexbox */
+    align-items: center; /* Centrage vertical */
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f8f9fa; /* Couleur de fond de l'en-tête */
+    padding: 20px;
+    display: flex;
+    justify-content: space-between; /* Espace entre le logo et le menu */
+    align-items: center;
+}
+
+header .logo img {
+    height: 50px; /* Ajustez la taille du logo si nécessaire */
+}
+
+nav ul {
+    list-style: none; /* Supprime les points de la liste */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Utilise un affichage flex pour aligner les éléments horizontalement */
+}
+
+nav ul li {
+    margin: 0 15px; /* Espace autour de chaque élément de menu */
+}
+
+nav ul li a {
+    text-decoration: none; /* Supprime le soulignement des liens */
+    color: #333; /* Couleur du texte du lien */
+}
+
+nav ul li a:hover {
+    text-decoration: underline; /* Ajoute un soulignement lors du survol */
+}
+
+main {
+    padding: 20px; /* Espace autour de la zone principale */
+}
+
+footer {
+    background-color: #f1f1f1; /* Couleur de fond du pied de page */
+    text-align: center; /* Centre le texte */
+    padding: 10px 0; /* Espace autour du texte du pied de page */
+    position: relative; /* Position relative pour un bon rendu */
+    bottom: 0; /* Positionne le pied de page en bas */
+    width: 100%; /* S'assure que le pied de page prend toute la largeur */
+}

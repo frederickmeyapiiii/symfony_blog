@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Liste des Articles</h1>
+    <h2 class="text-left mb-4">Nombre d'articles: {{ articles|length }}</h2>
+    <div class="row">
+        {% for article in articles %}
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    {% if article.image %}
+                        <img src="{{ asset('uploads/images/' ~ article.image) }}" class="card-img-top" alt="{{ article.title }}" style="height: 150px; object-fit: cover;">
+                    {% else %}
+                    <img src="path/to/default/image.jpg" class="card-img-top" alt="Aucune image disponible" style="height: 150px; object-fit: cover;">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.title }}</h5>
+                        <p class="card-text">{{ article.content|slice(0, 100) }}...</p>
+                        <p class="text-muted">Date: {{ article.dateTime|date('Y-m-d H:i') }}</p>
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ path('admin_article_edit', { id: article.id }) }}" class="btn btn-warning btn-sm">Modifier</a>
+                            <form method="POST" action="{{ path('admin_article_delete', { id: article.id }) }}" style="display:inline;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet article?');">
+                                <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <a href="{{ path('admin_article_create') }}" class="btn btn-primary mt-3">Créer un Nouvel Article</a>
+</div>
+{% endblock %}

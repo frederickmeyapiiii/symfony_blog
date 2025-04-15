@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Blog</title>
+    <!-- Assurez-vous d'inclure Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container text-center mt-5">
+        <!-- Section de Bienvenue -->
+        <h1>Bienvenue sur Mon Blog de Jeux Vidéo</h1>
+        <p>Explorez mes réflexions et critiques sur les derniers jeux vidéo qui me passionnent.</p>
+
+        <!-- Section À Propos de Moi -->
+        <h2 class="mt-5">À Propos de Moi</h2>
+        <div class="card mb-4 shadow">
+            <div class="card-body">
+                <h5 class="card-title">Bonjour ! Je suis Frédérick</h5>
+                <p class="card-text">
+                    Depuis mon enfance, j'ai été fasciné par l'univers des jeux vidéo. Que ce soit en jouant à des classiques ou en découvrant les dernières nouveautés, ma passion ne cesse de grandir. 
+                    <br>
+                    Ce blog est un espace où je partage mes réflexions, mes critiques et mes conseils sur le monde du jeu vidéo. J'aime explorer tous les genres, des RPG aux jeux de stratégie, et je suis toujours à la recherche de nouvelles expériences à partager avec vous.
+                    Je crois fermement que les jeux vidéo ne sont pas seulement un moyen de divertissement, mais aussi une forme d'art qui raconte des histoires et crée des émotions. N'hésitez pas à explorer mes articles et à échanger vos impressions avec moi !
+                </p>
+            </div>
+        </div>
+
+        <!-- Section Mes Derniers Articles -->
+        <h2 class="mt-5">Mes Derniers Articles</h2>
+        <div class="row">
+            {% for article in articles %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow" style="width: 100%;">
+                        {% if article.image %}
+                            <img src="{{ asset('uploads/images/' ~ article.image) }}" class="card-img-top" alt="{{ article.title }}" style="height: 200px; object-fit: cover;">
+                        {% else %}
+                            <img src="path/to/default/image.jpg" class="card-img-top" alt="Aucune image disponible" style="height: 200px; object-fit: cover;">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ article.title }}</h5>
+                            <p class="card-text">{{ article.content|slice(0, 100) ~ '...' }}</p>
+                            <a href="{{ path('blog', {'id': article.id}) }}" class="btn btn-primary">Lire la suite</a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="col-12">
+                    <p>Aucun article trouvé.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Assurez-vous d'inclure Bootstrap JS et jQuery si nécessaire -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

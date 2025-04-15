@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Articles{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center">Liste des Articles</h1>
+
+    <div class="row">
+        {% for article in articles %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    {% if article.image %}
+                        <img src="{{ asset('uploads/images/' ~ article.image) }}" class="card-img-top" alt="{{ article.title }}">
+                    {% else %}
+                        <img src="path/to/default/image.jpg" class="card-img-top" alt="Aucune image disponible">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.title }}</h5>
+                        <p class="card-text">{{ article.content|slice(0, 100) }}...</p>
+                        <a href="{{ path('article_show', { id: article.id }) }}" class="btn btn-primary">Lire la suite</a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-12">
+                <p>Aucun article trouvé.</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

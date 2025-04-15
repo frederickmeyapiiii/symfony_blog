@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des Articles</title>
+</head>
+<body>
+    <h1>Mes Articles</h1>
+
+    {% if articles is empty %}
+        <p>Aucun article disponible pour le moment.</p>
+    {% else %}
+        <ul>
+            {% for article in articles %}
+                <li>
+                    <h2>{{ article.title }}</h2>
+                    <p>{{ article.content }}</p>
+                    <img src="{{ article.image }}" alt="{{ article.title }}" />
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

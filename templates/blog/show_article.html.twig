@@ -1,0 +1,28 @@
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block body %}
+<h1>{{ article.title }}</h1>
+<p><em>Publié le {{ article.dateTime|date('Y-m-d') }}</em></p>
+<p>{{ article.content }}</p>
+
+<h3>Commentaires</h3>
+<ul>
+    {% for commentaire in commentaires %}
+        <li>{{ commentaire.content }} - <small>{{ commentaire.dateTime|date('Y-m-d H:i') }}</small></li>
+    {% else %}
+        <p>Aucun commentaire pour cet article.</p>
+    {% endfor %}
+</ul>
+
+<h4>Ajouter un commentaire</h4>
+{{ form_start(form) }}
+    {{ form_row(form.content) }}
+    <button type="submit">Envoyer</button>
+{{ form_end(form) }}
+
+<a href="{{ path('get_articles') }}">Retour à la liste des articles</a>
+{% endblock %}
