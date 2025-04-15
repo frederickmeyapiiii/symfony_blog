@@ -16,7 +16,7 @@ RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/lo
 
 # Copier les fichiers du projet dans le conteneur
 COPY . /var/www/html/
-RUN chown -R www-data:www-data /var/www/html/var
+
 
 # Aller dans le dossier du projet
 WORKDIR /var/www/html
