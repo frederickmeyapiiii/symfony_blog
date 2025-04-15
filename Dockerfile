@@ -2,23 +2,23 @@ FROM php:8.2-apache
 
 # Installer les extensions PHP nécessaires
 RUN apt-get update && apt-get install -y \
-    git unzip libicu-dev libzip-dev zip \
+    git unzip libicu-dev libzip-dev zip curl \
     && docker-php-ext-install intl pdo pdo_mysql zip
 
 # Activer le mod_rewrite d'Apache
 RUN a2enmod rewrite
 
-# Copier les fichiers du projet dans le conteneur
-COPY . /var/www/html/
-
-# Config Apache pour Symfony
+# Copier la configuration Apache
 COPY ./vhost.conf /etc/apache2/sites-available/000-default.conf
 
 # Installer Composer
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
 
-# Aller dans le dossier Symfony
+# Copier les fichiers du projet dans le conteneur
+COPY . /var/www/html/
+
+# Aller dans le dossier du projet
 WORKDIR /var/www/html
 
-# Installer les dépendances PHP
+# Installer les dépendances Symfony
 RUN composer install --no-interaction --no-scripts --optimize-autoloader
